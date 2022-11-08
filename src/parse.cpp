@@ -416,11 +416,10 @@ void MainWindow::parseMemMap(){
 						QStringList entry = fileData[i].split(QString("\t"));
 
 						QStringList view;
-						view.append(entry.at(2));	// name (pad)
-						view.append(entry.at(0));	// base
-						view.append(entry.at(1));	// size
-						view.append(QString("")); // end
-						view.append(entry.at(2));	// type (pad)
+                        view.append(entry.at(0));	// Exec Addr
+                        view.append(entry.at(1));	// Load Addr
+                        view.append(entry.at(2));	// Size
+                        view.append(QString(""));   // end
 
 						QTreeWidgetItem *item = new QTreeWidgetItem(view);
 						eritem->addChild(item);
@@ -430,17 +429,25 @@ void MainWindow::parseMemMap(){
 						QStringList entry = fileData[i].split(QString("\t"));
 
 						QStringList view;
-						view.append(entry.at(6));	// name
-						view.append(entry.at(0));	// base
-						view.append(entry.at(1));	// size
-						view.append(QString("")); // end
-
-						QString type;
-						type.append(entry.at(3) + QString(" ") + entry.at(2));
-						view.append(type);	// type
-
-						qDebug() << entry;
-						qDebug() << view;
+                        view.append(entry.at(0));	// Exec Addr
+                        view.append(entry.at(1));	// Load Addr
+                        view.append(entry.at(2));	// Size
+                        view.append(entry.at(3));	// Type
+                        view.append(entry.at(4));	// Attr
+                        view.append(entry.at(5));	// Idx
+                        if(entry.count()==9)        // E
+                        {
+                            view.append("*");
+                            view.append(entry.at(7));	// Section Name
+                            view.append(entry.at(8));	// Object
+                        }
+                        else
+                        {
+                            view.append(" ");
+                            view.append(entry.at(6));	// Section Name
+                            view.append(entry.at(7));	// Object
+                         }
+                        view.append(QString(""));   // end
 
 						QTreeWidgetItem *item = new QTreeWidgetItem(view);
 						eritem->addChild(item);
@@ -448,6 +455,8 @@ void MainWindow::parseMemMap(){
 				}
 			}
 		}
+        ui->treeMemMap->expandToDepth(0);
+        ui->treeMemMap->sortItems(0,Qt::SortOrder::AscendingOrder);
 	}else{
 		ui->memMapEntry->setText(QString("Memory map missing from file"));
 	}

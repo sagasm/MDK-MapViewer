@@ -24,6 +24,10 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui(new Ui::MainWindow)
 {
 	ui->setupUi(this);
+    ui->treeMemMap->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->removedTable->setColumnWidth(2,100);
+    ui->symbolTable->setColumnWidth(0,400);
+    ui->componentTable->setColumnWidth(6,350);
 }
 
 MainWindow::~MainWindow()
@@ -98,15 +102,13 @@ bool MainWindow::loadFile(){
 void MainWindow::parseData(){
 
 	//ARM Linker, 5.03 [Build 76] [MDK-ARM Standard]
-	if( fileData.at(0).contains(QString("ARM Linker, 5.03")) ){
+//	if( fileData.at(0).contains(QString("ARM Linker, 5.03")) ){
 
-	}else{
-		QMessageBox::information(this,tr("Note"),
-													tr("The ARM Linker version of this map file is untested\n"),
-													QMessageBox::Ok);
-	}
-
-
+//	}else{
+//		QMessageBox::information(this,tr("Note"),
+//													tr("The ARM Linker version of this map file is untested\n"),
+//													QMessageBox::Ok);
+//	}
 
 	parseRemovedSections();
 	parseSymbolTable();
