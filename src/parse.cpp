@@ -69,7 +69,8 @@ void MainWindow::parseSymbolTable(){
 		ui->symbolTable->setItem(i,1,new QTableWidgetItem(a[1])); // value
 		ui->symbolTable->setItem(i,2,new QTableWidgetItem(a[2])); // type
 		QTableWidgetItem *item = new QTableWidgetItem();
-		item->setData(Qt::EditRole, a[3].toInt());
+        item->setTextAlignment(Qt::AlignRight|Qt::AlignVCenter);
+        item->setData(Qt::EditRole, a[3].toInt());
 		ui->symbolTable->setItem(i,3,item); // size
 		ui->symbolTable->setItem(i,4,new QTableWidgetItem(a[4])); // object
 		if( a.count() > 5)
@@ -85,8 +86,9 @@ void MainWindow::parseSymbolTable(){
 		ui->symbolTable->setItem(i,1,new QTableWidgetItem(a[1])); // value
 		ui->symbolTable->setItem(i,2,new QTableWidgetItem(a[2])); // type
 		QTableWidgetItem *item = new QTableWidgetItem();
-		item->setData(Qt::EditRole, a[3].toInt());
-		ui->symbolTable->setItem(i,3,item); // size
+        item->setTextAlignment(Qt::AlignRight|Qt::AlignVCenter);
+        item->setData(Qt::EditRole, a[3].toInt());
+        ui->symbolTable->setItem(i,3,item); // size
 		ui->symbolTable->setItem(i,4,new QTableWidgetItem(a[4])); // object
 		if( a.count() > 5)
 			ui->symbolTable->setItem(i,5,new QTableWidgetItem(a[5])); // section
@@ -134,7 +136,8 @@ void MainWindow::parseRemovedSections(){
 		ui->removedTable->setItem(i,0,new QTableWidgetItem(a[0])); // name
 		ui->removedTable->setItem(i,1,new QTableWidgetItem(a[1])); // type
 		QTableWidgetItem *item = new QTableWidgetItem();
-		item->setData(Qt::EditRole, a[2].toInt());
+        item->setTextAlignment(Qt::AlignRight|Qt::AlignVCenter);
+        item->setData(Qt::EditRole, a[2].toInt());
 		ui->removedTable->setItem(i,2,item); // size
 	}
 }
@@ -253,7 +256,8 @@ void MainWindow::parseImageComponents(){
 		QStringList a = fileData.at(i+startUserObject).split('\t');
 		for(int j=0; j<6; j++){
 			QTableWidgetItem *item = new QTableWidgetItem();
-			item->setData(Qt::EditRole, a[j].toInt());
+            item->setTextAlignment(Qt::AlignRight|Qt::AlignVCenter);
+            item->setData(Qt::EditRole, a[j].toInt());
 			ui->componentTable->setItem(rowCount,j,item);
 		}
 		ui->componentTable->setItem(rowCount,6,new QTableWidgetItem(a[6])); // symbol
@@ -265,7 +269,8 @@ void MainWindow::parseImageComponents(){
 		QStringList a = fileData.at(i+startLibObjects).split('\t');
 		for(int j=0; j<6; j++){
 			QTableWidgetItem *item = new QTableWidgetItem();
-			item->setData(Qt::EditRole, a[j].toInt());
+            item->setTextAlignment(Qt::AlignRight|Qt::AlignVCenter);
+            item->setData(Qt::EditRole, a[j].toInt());
 			ui->componentTable->setItem(rowCount,j,item);
 		}
 		ui->componentTable->setItem(rowCount,6,new QTableWidgetItem(a[6])); // symbol
@@ -277,7 +282,8 @@ void MainWindow::parseImageComponents(){
 		QStringList a = fileData.at(i+startLibs).split('\t');
 		for(int j=0; j<6; j++){
 			QTableWidgetItem *item = new QTableWidgetItem();
-			item->setData(Qt::EditRole, a[j].toInt());
+            item->setTextAlignment(Qt::AlignRight|Qt::AlignVCenter);
+            item->setData(Qt::EditRole, a[j].toInt());
 			ui->componentTable->setItem(rowCount,j,item);
 		}
 		ui->componentTable->setItem(rowCount,6,new QTableWidgetItem(a[6])); // symbol
@@ -450,6 +456,7 @@ void MainWindow::parseMemMap(){
                         view.append(QString(""));   // end
 
 						QTreeWidgetItem *item = new QTreeWidgetItem(view);
+                        item->setTextAlignment(5,Qt::AlignRight|Qt::AlignVCenter);
 						eritem->addChild(item);
 					}
 				}
